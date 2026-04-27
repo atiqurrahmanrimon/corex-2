@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoreX - High End Smart Home & Accessories</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="CoreX" style="height: 35px; width: auto; display: block;"></a>
+            <ul class="nav-links">
+                <li><a href="#decor">Home Decor</a></li>
+                <li><a href="#watch">Watch</a></li>
+                <li><a href="#fan">Fan</a></li>
+                <li><a href="#accessories">Accessories</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero dark-section" id="decor">
+        <div class="hero-content fade-in">
+            <h1>Illuminate your space.</h1>
+            <p>The new CoreX Smart Lamp. A masterpiece of light and shadow.</p>
+            <div class="cta-buttons">
+                <button class="btn-primary" style="background: transparent; border: 1px solid #2997ff; color: #2997ff; cursor: pointer;" onclick="cart.add('CoreX Smart Lamp', 12900, 'assets/images/corex_hero_light_1777254345968.png')">Add to Cart</button>
+                <a href="order.html?product=CoreX%20Smart%20Lamp&price=12900&img=assets/images/corex_hero_light_1777254345968.png" class="btn-primary">Buy Now</a>
+            </div>
+        </div>
+        <div class="hero-image scale-up">
+            <a href="lamp.html">
+                <img src="assets/images/corex_hero_light_1777254345968.png" alt="CoreX Smart Lamp">
+            </a>
+        </div>
+    </section>
+
+    <!-- Watch Section -->
+    <section class="feature-section dark-section" id="watch">
+        <div class="feature-content fade-in">
+            <h2>CoreX Watch</h2>
+            <h3>Time, redefined.</h3>
+            <p>Sleek metallic band, minimalist aesthetic. It's not just a watch, it's a statement.</p>
+             <div class="cta-links">
+                <a href="watch.html">Shop Watch ></a>
+            </div>
+        </div>
+        <div class="feature-image slide-up">
+            <a href="watch.html">
+                <img src="assets/images/corex_smartwatch_1777254452818.png" alt="CoreX Watch">
+            </a>
+        </div>
+    </section>
+
+    <!-- Fan Section -->
+    <section class="feature-section dark-section" id="fan">
+        <div class="feature-image slide-right">
+            <a href="fan.html">
+                <img src="assets/images/corex_smart_fan_1777254468978.png" alt="CoreX Smart Fan">
+            </a>
+        </div>
+        <div class="feature-content text-left fade-in">
+            <h2>CoreX Air</h2>
+            <h3>Breathe pure elegance.</h3>
+            <p>Minimalist design meets powerful, whisper-quiet performance.</p>
+             <div class="cta-links">
+                <a href="fan.html">Shop Fan ></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bento Grid Section (Accessories) -->
+    <section class="bento-section dark-section" id="accessories">
+        <div class="section-header fade-in">
+            <h2>Accessories.</h2>
+            <p>Perfectly crafted for your devices.</p>
+        </div>
+        <div class="bento-grid">
+            <a href="accessories.html" class="bento-item large fade-in" style="text-decoration: none;">
+                <img src="assets/images/corex_phone_covers_1777254483107.png" alt="CoreX Phone Covers">
+                <div class="bento-text">
+                    <h4>Silicone Cases</h4>
+                    <p>Soft touch. Elegant pastels.</p>
+                </div>
+            </a>
+            <div class="bento-item small dark-bg fade-in" style="transition-delay: 0.1s">
+                <div class="bento-text">
+                    <h4>MagSafe Wallets</h4>
+                    <p>Snap it on.</p>
+                </div>
+            </div>
+            <div class="bento-item small light-bg fade-in" style="transition-delay: 0.2s">
+                <div class="bento-text">
+                    <h4>Chargers</h4>
+                    <p>Power up fast.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recently Visited Section -->
+    <section class="catalog-section dark-section" id="recentSection" style="display: none; padding-top: 50px;">
+        <div class="section-header fade-in" style="text-align: center; margin-bottom: 40px;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 10px;">Recently Visited</h2>
+            <p style="color: #888;">Pick up where you left off.</p>
+        </div>
+        <div class="catalog-grid" id="recentGrid">
+            <!-- Injected via JS -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 CoreX Inc. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Use</a></li>
+                <li><a href="sales.html">Sales Policy</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const recent = JSON.parse(localStorage.getItem('corex_recent')) || [];
+            if (recent.length > 0 && typeof productDatabase !== 'undefined') {
+                document.getElementById('recentSection').style.display = 'block';
+                const grid = document.getElementById('recentGrid');
+                
+                recent.forEach((id, index) => {
+                    const product = productDatabase[id];
+                    if (product) {
+                        const delay = index * 0.1;
+                        grid.innerHTML += `
+                            <div class="catalog-item fade-in visible" style="transition-delay: ${delay}s">
+                                <a href="product.html?id=${id}" style="text-decoration: none;">
+                                    <img src="${product.img}" class="${product.variant || ''}" alt="${product.name}">
+                                    <h3>${product.name}</h3>
+                                </a>
+                                <p style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; margin-bottom: 15px; color: #888;">${product.desc}</p>
+                                <div class="catalog-price">${product.price.toLocaleString()} ৳</div>
+                                <div class="catalog-buttons">
+                                    <button class="catalog-add-cart" onclick="cart.add('${product.name}', ${product.price}, '${product.img}', '${product.variant || ''}')">Add to Cart</button>
+                                    <a href="order.html?product=${encodeURIComponent(product.name)}&price=${product.price}&img=${encodeURIComponent(product.img)}&variant=${product.variant || ''}" class="catalog-buy">Buy Now</a>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
